@@ -6,7 +6,7 @@
 }
 
 nav{
-    height: 50px;
+    height: 60px;
     background-color: rgb(175, 129, 175);
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@ nav ul{
 .container{
     display: flex;
 
-    margin: 100px 0;
+    margin: 70px 0;
     justify-content: center;
  
     
@@ -37,7 +37,6 @@ nav ul{
 }
 
 .box{
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +93,17 @@ nav ul{
     transition: width 0.5s ease-in-out;
 }
 
+#reset{
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
 
+#reset:hover{
+    background-color: rgb(220, 165, 234);
+}
 @media screen and (max-width:940px) 
 {
   .container{

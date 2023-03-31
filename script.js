@@ -4,12 +4,16 @@ let box=document.querySelectorAll('.box');
 let boxText=document.querySelectorAll('.boxText')
 let turnOf=document.getElementById('turn');
 let turn='X';
-let winArray=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+let winArray=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+let boxSet=[0,0,0,0,0,0,0,0,0]
 let gameOver=false;
 let wonImg=document.getElementById('won_gif');
 let boxCount=0;
 let reset=document.getElementById('reset');
 let resetOn=false;
+let winMusic=new Audio('gameover.mp3')
+let moveMusic=new Audio('ting.mp3')
+
 //Inserting X/0 in the boxes on each click  
 
 
@@ -18,39 +22,77 @@ box.forEach((b,i)=>{
     b.addEventListener('click',()=>{
         if(turn==='X')
         {
-            boxText[i].innerHTML='X';
-            boxCount++;
-            checkWin();
-            if(gameOver)
-            turnOf.innerHTML=`${turn} won 🎉`
-            else
+            if(boxText[i].innerHTML=="")
             {
-                turn='0';
-                if(boxCount==9)
-                 turnOf.innerHTML=`It's a draw`;
+                boxText[i].innerHTML='X';
+             
+                moveMusic.play();
+                moveMusic.currentTime=0;
+                boxCount++;
+                checkWin();
+                if(gameOver)
+                {
+                    turnOf.innerHTML=`${turn} won 🎉`;
+                    winMusic.play();
+                }
+            
                 else
-                turnOf.innerHTML=`Turn for ${turn}`;
-            }
+                {
+                    turn='0';
+                    if(boxCount==9)
+                    turnOf.innerHTML=`It's a draw &#128517;`;
+                    else
+                    {
+                        turnOf.innerHTML=`Turn for ${turn} &#128523`;
+                    }
+                    
+                }
+             }
+             else
+             {
+                alert("Already set");
+             }
+              
             
         }
         else
         {
-            boxText[i].innerHTML='0';
-            boxCount++;
-            checkWin();
-            if(gameOver)
-            turnOf.innerHTML=boxText[i].innerHTML+ " won. Hurray";
+             
+            if(boxText[i].innerHTML=="")
+            {
+                boxText[i].innerHTML='0';
+                
+                moveMusic.play();
+                moveMusic.currentTime=0;
+                boxCount++;
+                checkWin();
+                if(gameOver)
+                {
+                    turnOf.innerHTML=boxText[i].innerHTML+ " won 🎉";
+                    setTimeout(winMusic.play(),10000);
+                
+                }
+                
+                else
+                {
+                    turn='X';
+                    if(boxCount==9)
+                    turnOf.innerHTML=`It's a draw`;
+                    else
+                    {
+                        turnOf.innerHTML=`Turn for ${turn}`;
+                        
+                    }
+                    
+                }
+            }
             else
             {
-                turn='X';
-                if(boxCount==9)
-                 turnOf.innerHTML=`It's a draw`;
-                else
-                turnOf.innerHTML=`Turn for ${turn}`;
-            }
+                alert('Already Set')
+            }   
             
+        }
             
-        }       
          })
 })
 
@@ -61,6 +103,7 @@ const checkWin=()=>{
         {
             gameOver=true;
             wonImg.style.width="200px";
+           
         }
     })
     
@@ -71,9 +114,11 @@ reset.addEventListener('click',()=>{
           b.innerHTML="";        
     });
     turn='X';
-    turnOf.innerHTML=`Turn for ${turn}`;
+    turnOf.innerHTML=`First Turn for ${turn}`;
     wonImg.style.width="0px";
     gameOver=false;
     boxCount=0;
+
+    
 });
 
