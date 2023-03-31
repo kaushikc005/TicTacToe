@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Oxygen&family=Signika&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -9,6 +11,7 @@ nav{
     display: flex;
     align-items: center;
     font-size: larger;
+    font-family: 'Oxygen', sans-serif;
 }
 
 nav ul{
@@ -18,22 +21,19 @@ nav ul{
 
 .container{
     display: flex;
-    background-color: aqua;
-    height: 60vh;
-    margin: 30px 0;
+
+    margin: 100px 0;
     justify-content: center;
-    align-items: center;
+ 
     
 }
 
 .boxContainer{
- 
     display: grid;
-    grid-template-rows: 10vh 10vh 10vh;
-    grid-template-columns: 10vh 10vh 10vh;
-    height: 250px;
-    width: 20vw;
+    grid-template-rows: repeat(3,10vw);
+    grid-template-columns: repeat(3,10vw);
     justify-content: center;
+    position: relative;
 }
 
 .box{
@@ -42,9 +42,16 @@ nav ul{
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    font-size: 50px;
     cursor: pointer;
-   
+    padding: 5px;
+}
+
+.box:hover{
+    background-color: rgb(188, 237, 221);
+}
+.boxText{
+    font-family: 'Abel', sans-serif;
+    font-size: 70px;
 }
 
 .bt-0{
@@ -64,11 +71,46 @@ nav ul{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 10px;
+    padding:0 50px;
+    font-size: 25px;
+    
+}
+
+.gameInfo div{
+    font-family: 'Oxygen', sans-serif;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.gameInfo h1{
+    font-family: 'Signika', sans-serif;
 
 }
 
+
 .gameInfo img{
     width: 0px;
+    margin:50px 50px 0 0;
     transition: width 0.5s ease-in-out;
+}
+
+
+@media screen and (max-width:940px) 
+{
+  .container{
+    flex-direction:column;
+    margin-top: 50px;
+    
+  }
+  .boxText{
+  
+    font-size: 40px;
+    
+  }
+  .gameInfo{
+    margin-top: 30px;
+    font-size: 15px;
+  }
+
+    
 }
